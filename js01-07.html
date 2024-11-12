@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>구구단</title>
+    <style>
+        table {
+          border-collapse: collapse;
+          background-color: beige;
+        }
+        th,
+        td {
+          border: 2px solid #857979;
+          text-align: center;
+          width: 20%;
+        }
+        th {
+          background-color: rgb(78, 92 ,  38);
+          color: #fff;
+        }
+    </style>
+    <script>
+        const input = prompt('원하는 수를 입력하세요')
+        let list = ""; 
+        list += '<table>';
+        list += '<tr>';
+        list += '<th>'+input+'단</th>';
+        list += '<th>값</th>';
+        list += '</tr>';
+        for(let i = 0; i < 9; i++){
+            list +=`<tr>
+                    <td>`+input+`x2</td>
+                    <td>`+input*(i+1)+`</td>
+                    </tr>`
+            }
+        list += '</table>';
+        document.write(list);
+    </script>
+</head>
+<body>
+    <!-- table>tr>th{2단}+th{값}^(tr>td{2 x $}+td{$})*9 -->
+    
+</body>
+</html>

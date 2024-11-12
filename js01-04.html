@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>간편</title>
+    <script>
+      console.log("   <자료형검사>   ");
+      console.log('typeof("") => ' + typeof ""); // string
+      console.log('typeof("문자열") => ' + typeof "문자열"); // string
+      console.log('typeof("1234") => ' + typeof "1234"); // string
+      console.log("typeof(1234) => " + typeof 1234); // number
+      console.log("typeof(true) => " + typeof true); // boolean
+      console.log('typeof("true") => ' + typeof "true"); // string
+      console.log("typeof(false) => " + typeof false); // boolean
+      console.log("typeof(null) => " + typeof null); // object
+      console.log("typeof(undefined) => " + typeof undefined); // undefined
+      console.log(0 / 0); // NaN
+      console.log(parseInt("abc")); // NaN
+      console.log(NaN === NaN); // false
+      console.log(isNaN(NaN)); // true
+    </script>
+  </head>
+  <body>
+    <h2>
+      <pre>
+        /* 팁 */
+        // Number() : 곱하기 1을 하면 숫자가 된다.    '1234' * 1(1234) , '안녕' * 1(NaN)
+        // Boolean() : !! 느낌표 두개를 하면 블리언이 된다. !!1234567 (true) , !!''(false)
+        // String() : 더하기 '' 공백을 하면 문자가 된다.
+    </pre
+      >
+    </h2>
+  </body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>환률계산기</title>
+    <script>
+      //   const dollar = Number(prompt("환전할 달러를 입력해 주세요!!"))
+      const dollar = prompt("환전할 달러를 입력해 주세요!!") * 1;
+      //   const dollar = +prompt("환전할 달러를 입력해 주세요!!");
+      console.log(1, dollar, typeof dollar);
+      const ex = 1400;
+      const won = dollar * ex;
+      const list = `<h1>환전하실 ${dollar}달러는 ${won}원 입니다.</h1>`;
+      document.write(list);
+    </script>
+  </head>
+  <body></body>
+</html>
