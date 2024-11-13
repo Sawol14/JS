@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS 특강</title>
+
+    <!--  // bootstrap v5.3.3 cdn -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      function showLinkPreview(event, link) {
+        event.preventDefault();
+        document.getElementById("preview").style.display = "block";
+        var iframe = document.getElementById("previewIframe");
+        iframe.src = link;
+      }
+
+      function closePreview(event) {
+        if (event.target === document.getElementById("preview")) {
+          document.getElementById("preview").style.display = "none";
+          document.getElementById("previewIframe").src = "";
+        }
+      }
+      async function fetchTitle(url) {
+        try {
+          const response = await fetch(url);
+          const text = await response.text();
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(text, "text/html");
+          const title = doc.querySelector("title").innerText;
+          return title;
+        } catch (error) {
+          console.error("제목을 가져오는 중 오류 발생:", error);
+          return "제목 로드 실패";
+        }
+      }
+
+      async function generateContent() {
+        let i = 0;
+        let j = 0;
+        let url = "";
+        let st = [7, 3];
+        let list = "";
+
+        list += `<h1>JS 특강</h1>
+                    <h2>자바스크립트</h2>
+                    <div id="preview" onclick="closePreview(event)">
+                    <iframe id="previewIframe" src=""></iframe>
+                    </div>`;
+        list += '<div class="table-container">';
+        for (i = 0; i < st.length; i++) {
+          list += "<table>";
+          list += "<tbody>";
+          list += "<tr>";
+          list += "<thead>";
+          list += `<th colspan="2">${i + 1}일차</th>`;
+          list += "</thead>";
+          list += "<td>";
+          for (j = 0; j < st[i]; j++) {
+            list +=
+              j < 9 ? `0${i + 1}-0${j + 1}<br />` : `0${i + 1}-${j + 1}<br />`;
+          }
+          list += "</td>";
+          list += "<td>";
+          for (j = 0; j < st[i]; j++) {
+            url =
+              j < 9
+                ? `js0${i + 1}-0${j + 1}.html`
+                : `js0${i + 1}-${j + 1}.html`;
+            const title = await fetchTitle(url);
+            list += `<a href="${url}" class="link-box" onclick="showLinkPreview(event, '${url}')">${title}</a><br />`;
+          }
+          list += "</td>";
+          list += "</tr>";
+          list += "</tbody>";
+          list += "</table>";
+        }
+
+        list += "</div>";
+        document.body.innerHTML = list;
+      }
+
+      generateContent();
+    </script>
+
+    <style>
+      h1 {
+        text-align: center;
+        color: brown;
+      }
+
+      h2 {
+        text-align: center;
+      }
+
+      tr {
+        text-align: center;
+        background-color: aliceblue;
+      }
+
+      #preview {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: rgba(0, 0, 0, 0.432);
+        color: white;
+        border-radius: 10px;
+        width: 100%;
+        height: 100%;
+        z-index: 1000;
+        cursor: pointer;
+      }
+
+      #previewIframe {
+        background-color: rgb(255, 255, 255);
+        width: 50%;
+        height: 80%;
+        border: none;
+        margin-top: 5%;
+        margin-left: 25%;
+      }
+
+      .link-box {
+        cursor: pointer;
+      }
+
+      .link-box:hover {
+        background-color: #e0e0e0;
+      }
+
+      .table-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+      }
+
+      table {
+        width: 25%;
+        height: 300px;
+        border-collapse: collapse;
+        overflow: hidden;
+      }
+
+      td {
+        text-align: center;
+        vertical-align: top;
+      }
+
+      td,
+      th {
+        border: 1px solid indigo;
+      }
+
+      a {
+        text-decoration: none;
+        color: black;
+      }
+    </style>
+  </head>
+
+  <body></body>
+</html>

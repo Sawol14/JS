@@ -1,71 +1,72 @@
 <!DOCTYPE html>
 <html lang="ko">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>구구단</title>
     <style>
-        table {
-            border-collapse: collapse;
-            background-color: rgb(235, 235, 235);
-        }
+      table {
+        border-collapse: collapse;
+        background-color: rgb(235, 235, 235);
+      }
 
-        th,
-        td {
-            border: 2px solid #ffffff;
-            text-align: center;
-            width: 20%;
-        }
+      th,
+      td {
+        border: 2px solid #ffffff;
+        text-align: center;
+        width: 20%;
+      }
 
-        th {
-            background-color: rgb(185, 185, 185);
-            color: #c3fae0;
-        }
-        .table-container {
-            margin-left: 10%;
-            width: 80%;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            
-        }
+      th {
+        background-color: rgb(185, 185, 185);
+        color: #c3fae0;
+      }
+      .table-container {
+        margin-left: 10%;
+        width: 80%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
 
-        .table-wrapper {
-            margin-right: 10px;
-            margin-bottom: 20px;
-            width: 20%;
-            box-sizing: border-box;
-        }
-        
+      .table-wrapper {
+        margin-right: 10px;
+        margin-bottom: 20px;
+        width: 20%;
+        box-sizing: border-box;
+      }
     </style>
     <script>
-        const input = "";
-        let list = '<div class="table-container">';
-        
-        for (let i = 1; i < 21; i++) {
-            list += '<div class="table-wrapper">'
-            list += '<table>';
-            list += '<tr>';
-            list += '<th>' + (i+1) + '단</th>';
-            list += '<th>값</th>';
-            list += '</tr>';
-            for (let j = 0; j < 9; j++) {
-                list += `<tr>
-                    <td>`+ (i+1) + ` x ` + (j+1) + `</td>
-                    <td>`+ (i+1)*(j+1) + `</td>
-                    </tr>`
-            }
-            list += '</table>';
-            list += '</div>';
+      const input = "";
+      let list = '<div class="table-container">';
+
+      for (let i = 1; i < 21; i++) {
+        list += '<div class="table-wrapper">';
+        list += "<table>";
+        list += "<tr>";
+        list += "<th>" + (i + 1) + "단</th>";
+        list += "<th>값</th>";
+        list += "</tr>";
+        for (let j = 0; j < 9; j++) {
+          list +=
+            `<tr>
+                    <td>` +
+            (i + 1) +
+            ` x ` +
+            (j + 1) +
+            `</td>
+                    <td>` +
+            (i + 1) * (j + 1) +
+            `</td>
+                    </tr>`;
         }
-        list += '</div>';
-        document.write(list);
+        list += "</table>";
+        list += "</div>";
+      }
+      list += "</div>";
+      document.write(list);
     </script>
-</head>
+  </head>
 
-<body>
-
-</body>
-
+  <body></body>
 </html>

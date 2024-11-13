@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>자리 배치도 만들기</title>
+    <style>
+      td,
+      td {
+        width: 55px;
+        height: 30px;
+        text-align: center;
+        border: 1px solid black;
+      }
+    </style>
+    <script>
+      // document.addEventListener('DOMContentLoaded',function(){ });
+      const mx = prompt("총 몇 명?");
+      const col = prompt("한 줄에 몇명 씩?") || 6;
+      let seatnum = 0;
+      document.write("<h1>자리배치도</h1>");
+      document.write("<table>");
+      for (let i = 0; i < mx / col; i++) {
+        document.write("<tr>");
+        for (let j = 1; j <= col; j++) {
+          seatnum = i * col + j;
+          document.write("<td>");
+          document.write(` 좌석${seatnum} `);
+          document.write("</td>");
+          if (seatnum == mx) break;
+        }
+        document.write("</tr>");
+      }
+      document.write("</table>");
+    </script>
+  </head>
+  <body></body>
+</html>
