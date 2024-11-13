@@ -14,12 +14,13 @@
     <h1 id="h5"></h1>
     <script>
         
-        const color =['red', 'yellow', 'green', 'blue', 'white']
+        const color =['white', 'blue', 'yellow', 'red', 'green']
+        const bkcolor =['red', 'yellow', 'green', 'blue', 'white']
         for (let i = 0; i < 5; i++){
             const header = document.querySelector(`#h${i+1}`);
             header.style.color = `${color[i]}`;
-            header.innerHTML += "h1 불러오기<br/>";
-            header.style.backgroundColor = "black";
+            header.innerHTML += `글씨색상은 ${color[i]}이고, 배경색상은 ${bkcolor[i]}입니다.<br/>`;
+            header.style.backgroundColor = `${bkcolor[i]}`;
         }
       </script>
   </body>
