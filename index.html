@@ -38,7 +38,7 @@
           const text = await response.text();
           const parser = new DOMParser();
           const doc = parser.parseFromString(text, "text/html");
-          const title = doc.querySelector("title").innerText;
+          const title = doc.querySelector("title").textContent;
           return title;
         } catch (error) {
           console.error("제목을 가져오는 중 오류 발생:", error);
@@ -50,7 +50,12 @@
         let i = 0;
         let j = 0;
         let url = "";
-        let st = [7, 10];
+        /*
+
+                          지정
+
+        */
+        let st = [7, 12];
         let list = "";
 
         list += `<h1>JS 특강</h1>
@@ -90,7 +95,6 @@
         list += "</div>";
         document.body.innerHTML = list;
       }
-
       generateContent();
     </script>
 
@@ -126,11 +130,11 @@
 
       #previewIframe {
         background-color: rgb(255, 255, 255);
-        width: 50%;
+        width: 70%;
         height: 80%;
         border: none;
         margin-top: 5%;
-        margin-left: 25%;
+        margin-left: 15%;
       }
 
       .link-box {
@@ -143,14 +147,13 @@
 
       .table-container {
         display: flex;
-        flex-wrap: wrap;
         gap: 10px;
         justify-content: center;
+        align-items: stretch;
       }
 
       table {
         width: 25%;
-        height: 300px;
         border-collapse: collapse;
         overflow: hidden;
       }
@@ -173,6 +176,17 @@
   </head>
 
   <body>
+    <script>
+      let tables = document.querySelectorAll("table");
+      let maxHeight = 0;
+      tables.forEach((table) => {
+        const height = table.offsetHeight; // 실제 table 길이
+        if (height > maxHeight) maxHeight = height;
+      });
 
+      tables.forEach((table) => {
+        table.style.height = maxHeight + "px";
+      });
+    </script>
   </body>
 </html>
