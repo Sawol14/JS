@@ -34,7 +34,7 @@
       }
       async function fetchTitle(url) {
         try {
-          const response = await fetch(url);
+          const response = await fetch('js'+url+'.html');
           const text = await response.text();
           const parser = new DOMParser();
           const doc = parser.parseFromString(text, "text/html");
@@ -55,7 +55,7 @@
                           지정
 
         */
-        let st = [7, 12];
+        let st = [7, 10];
         let list = "";
 
         list += `<h1>JS 특강</h1>
@@ -66,25 +66,20 @@
         list += '<div class="table-container">';
         for (i = 0; i < st.length; i++) {
           list += "<table>";
-          list += "<tbody>";
-          list += "<tr>";
           list += "<thead>";
           list += `<th colspan="2">${i + 1}일차</th>`;
           list += "</thead>";
-          list += "<td>";
+          list += "<tbody>";
+            list += "<tr>";
+              list += "<td>";
           for (j = 0; j < st[i]; j++) {
-            list +=
-              j < 9 ? `0${i + 1}-0${j + 1}<br />` : `0${i + 1}-${j + 1}<br />`;
-          }
-          list += "</td>";
-          list += "<td>";
-          for (j = 0; j < st[i]; j++) {
-            url =
-              j < 9
-                ? `js0${i + 1}-0${j + 1}.html`
-                : `js0${i + 1}-${j + 1}.html`;
+            
+            
+            url = j < 9 ? `0${i + 1}-0${j + 1}` : `0${i + 1}-${j + 1}`;
             const title = await fetchTitle(url);
-            list += `<a href="${url}" class="link-box" onclick="showLinkPreview(event, '${url}')">${title}</a><br />`;
+            list += `<a href="${url}.html" class="link-box" onclick="showLinkPreview(event, '${url}.html')">${url}___${title}</a><br />`;
+            
+            
           }
           list += "</td>";
           list += "</tr>";
@@ -111,8 +106,11 @@
       tr {
         text-align: center;
         background-color: aliceblue;
+        
       }
-
+      #tdnum {
+        width: 80px;
+      }
       #preview {
         display: none;
         position: fixed;
@@ -139,6 +137,7 @@
 
       .link-box {
         cursor: pointer;
+        margin: 10px;
       }
 
       .link-box:hover {
@@ -153,17 +152,19 @@
       }
 
       table {
-        width: 25%;
+        width: 18%;
         border-collapse: collapse;
         overflow: hidden;
+        border: 1px solid indigo;
       }
 
       td {
-        text-align: center;
+        text-align: left;
         vertical-align: top;
+        
       }
 
-      td,
+      thead,
       th {
         border: 1px solid indigo;
       }
@@ -177,6 +178,18 @@
 
   <body>
     <script>
+      const links = document.querySelectorAll(".link-box");
+
+      links.forEach((link) => {
+        link.addEventListener("mouseenter", function () {
+          this.closest("td").style.color = "red";
+        });
+
+        link.addEventListener("mouseleave", function () {
+          this.closest("td").style.color = ""; // 원래 색상으로 복원
+        });
+      });
+
       let tables = document.querySelectorAll("table");
       let maxHeight = 0;
       tables.forEach((table) => {
