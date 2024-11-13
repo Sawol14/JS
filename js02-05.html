@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>배열</title>
+  </head>
+  <script>
+    const arr = [11, 22, 33, 44, 55, 66, 77];
+    arr.push(123); // cf) arr.unshift(123) 상단위에 추가
+    console.log(arr);
+    arr.pop(); // cf) arr.shift() 상단부터 삭제
+    console.log(arr);
+    // slice() 원본 유지
+    console.log("arr.slice(2, 4) = ", arr.slice(2, 4));
+    // splice() 원본 수정
+    // *잘라내기 (다른 객체에 잘라낸값으로 초기화 가능)
+    arr.splice(0, 3);
+    console.log(arr);
+    // *추가 (start, end(0을 넣어 삭제하지않음), 추가할 값)
+    arr.splice(3, 0, 44,33,22);
+    console.log(arr);
+  </script>
+  <body>
+    <h1>콘솔확인</h1>
+  </body>
+</html>

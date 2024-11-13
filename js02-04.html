@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>스코프, 함수스코프</title>
+    <script>
+      let pi = 3.14;
+      console.log(`1.파이값은 ${pi}이다`);
+      {
+        let pi = 3.14152;
+        console.log(`2.중괄호안의 파이값은 ${pi}이다`);
+      }
+      console.log(`3.파이값은 ${pi}이다`);
+
+      function sample() {
+        let pi = 3.14155555555;
+        console.log(`5.메소드안의 파이값은 ${pi}이다`);
+      }
+      sample();
+      console.log(`6.파이값은 ${pi}이다`);
+    </script>
+  </head>
+
+  <body>
+    <h1>콘솔확인</h1>
+  </body>
+</html>
