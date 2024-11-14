@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>묵찌빠</title>
+    <style>
+      div {
+        background-image: url("https://t1.daumcdn.net/cfile/tistory/13045F404D7C365D23");
+        width: 147px;
+        height: 154px;
+        padding: 0;
+        margin-left: 25%;
+        margin-top: 10%;
+      }
+      .zzi {
+        width: 147px;
+        background-position: -132px, 0;
+      }
+      .bba {
+        width: 170px;
+        background-position: -270px, 0;
+      }
+    </style>
+    <!-- CDN example (jsDelivr) -->
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+    <script>
+      const now = dayjs();
+      const ms = now.get("ms");
+      const random1 = ms % 3;
+      if (random1 == 0) {
+        document.write(`<div class="muk"></div>`);
+      }
+      if (random1 == 1) {
+        document.write(`<div class="zzi"></div>`);
+      }
+      if (random1 == 2) {
+        document.write(`<div class="bba"></div>`);
+      }
+      const now1 = dayjs();
+      const ms1 = now1.get("ms");
+      const random2 = ms1 % 3;
+      if (random2 == 0) {
+        document.write(`<div class="bba"></div>`);
+      }
+      if (random2 == 1) {
+        document.write(`<div class="zzi"></div>`);
+      }
+      if (random2 == 2) {
+        document.write(`<div class="muk"></div>`);
+      }
+    </script>
+  </head>
+  <body></body>
+</html>
