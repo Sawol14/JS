@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>chartjs.org</title>
+    <style>
+      div {
+        width: 50%;
+        height: 50%;
+        margin-left: 25%;
+        
+      }
+      
+    </style>
+  </head>
+  <body>
+    <div>
+      <canvas id="myChart"></canvas>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+      const inp = 1000;
+      console.time("연산시간측정");
+      const dice = [0, 0, 0, 0, 0, 0, 0];
+      for (let i = 0; i < inp; i++) {
+        const array = new Uint8Array(2);
+        crypto.getRandomValues(array);
+        const ran = (array[0] % 6) + 1;
+        dice[ran - 1]++;
+      }
+      for (let j = 0; j < dice.length - 1; j++) {
+        dice[6] += dice[j];
+      }
+      const dchart = dice.splice(0, dice.length - 1);
+      console.log("결과:", dchart);
+      console.log("검증:", dice);
+      console.timeEnd("연산시간측정");
+
+      //   const ctx = document.getElementById("myChart");
+      const ctx = document.querySelectorAll("#myChart");
+      new Chart(ctx, {
+        type: "polarArea",
+        data: {
+          labels: ["1", "2", "3", "4", "5", "6"],
+          datasets: [
+            {
+              label: "주사위",
+              data: dchart,
+              borderWidth: 1,
+              backgroundColor: [
+                "rgba(155, 99, 32, 0.5)",
+                "rgba(175, 92, 192, 0.5)",
+                "rgba(55, 205, 86, 0.5)",
+                "rgba(1, 103, 207, 0.5)",
+                "rgba(154, 162, 135, 0.5)",
+                "rgba(154, 62, 135, 0.5)",
+              ],
+            },
+          ],
+        },
+        
+      });
+    </script>
+  </body>
+</html>

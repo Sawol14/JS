@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>주사위</title>
+    <style>
+      .bar {
+        background-color: rgb(246, 246, 113);
+        height: 30px;
+        border: 1px solid #222;
+        width: 30px;
+        transition: all 1s ease;
+      }
+      .label {
+        margin: 5px;
+        height: 30px;
+      }
+      .val {
+        float: left;
+        text-align: top;
+      }
+      tr,
+      td {
+        display: flex;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>주사위 확률</h2>
+    <table>
+      <tr>
+        <td>
+          <span class="label">1이 나온 수: </span>
+        </td>
+        <td>
+          <div class="bar">숫자1</div>
+          <span class="val"></span>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <span class="label">2이 나온 수:</span>
+        </td>
+        <td>
+          <div class="bar">숫자2</div>
+          <span class="val"></span>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <span class="label">3이 나온 수:</span>
+        </td>
+        <td>
+          <div class="bar">숫자3</div>
+          <span class="val"></span>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <span class="label">4이 나온 수:</span>
+        </td>
+        <td>
+          <div class="bar">숫자4</div>
+          <span class="val"></span>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <span class="label">5이 나온 수:</span>
+        </td>
+        <td>
+          <div class="bar">숫자5</div>
+          <span class="val"></span>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <span class="label">6이 나온 수:</span>
+        </td>
+        <td>
+          <div class="bar">숫자6</div>
+          <span class="val"></span>
+        </td>
+      </tr>
+    </table>
+    <script>
+      
+      // const inp = +prompt("몇회 주사위를 던질까요?") || 1000;
+      const inp = 1000;
+      console.time("연산시간측정");
+      const dice = [0, 0, 0, 0, 0, 0, 0];
+      for (let i = 0; i < inp; i++) {
+        const array = new Uint8Array(2);
+        crypto.getRandomValues(array);
+        const ran = (array[0] % 6) + 1;
+        dice[ran - 1]++;
+      }
+      for (let j = 0; j < dice.length - 1; j++) {
+        dice[6] += dice[j];
+      }
+      const dchart = dice.splice(0, dice.length - 1);
+      console.log("결과:", dchart);
+      console.log("검증:", dice);
+      console.timeEnd("연산시간측정");
+
+      /* 시각화 */
+      document.addEventListener("DOMContentLoaded", () => {
+        const divs = document.querySelectorAll(".bar");
+        const vals = document.querySelectorAll(".val");
+        let col = '255';
+        let de = dchart[0];
+        divs.forEach((v, i) => {
+          setTimeout(() => {
+          v.style.width = `${dchart[i] / (inp / 1000)}px`;
+          v.style.backgroundColor = `rgba(${col}, 0, 200, 0.4)`;
+          col -= '50';
+          vals[i].textContent = `${dchart[i]}`;
+        }, i * 100); // 100ms 지연 추가
+          
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>확률</title>
+  </head>
+  <body>
+    <h1>아이템 확률</h1>
+    <div id="text">로딩중..</div>
+    <script>
+      let ran = Math.floor(Math.random() * 100 - 1);
+      const div = document.getElementById("text");
+      div.textContent = `${ran}데이터 들어옴`;
+      if (ran == 1 || ran == 2 || ran == 4 || ran == 5 || ran == 6) ran = 3;
+      if (ran == 3) div.textContent = `가짜꽝${ran*14}`;
+      else if (ran != 3 && ran < 10) div.textContent = `당첨`;
+      else div.textContent = `꽝 ${ran}`;
+    </script>
+  </body>
+</html>
