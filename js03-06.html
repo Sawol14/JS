@@ -4,40 +4,114 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>로또</title>
+    <style>
+      div {
+        margin: 5%;
+        width: 45%;
+        display: flex;
+      }
+    </style>
   </head>
   <body>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <h1></h1>
     <div>
-        <canvas id="myChart"></canvas>
+      <canvas id="myChart1"></canvas>
+      <canvas id="myChart2"></canvas>
+    </div>
+    <div>
+      <canvas id="myChart3"></canvas>
+      <canvas id="myChart4"></canvas>
     </div>
     <script>
+      const h1 = document.querySelector("h1");
       const trw = "100000";
       const arr = [];
+      let i = 0;
       let number = new Array(45).fill(0); // fill() 모든요소를 ()안의 값으로 채움
-      for (let i = 0; i < trw; i++) {
-        const random = Math.floor(Math.random() * 45 + 1);
-        number[random-1] += 1
-        if (!arr.includes(random)) { // 중복 확인
+      while (i < trw) {
+        while (arr.length < 6) {
+          const random = Math.floor(Math.random() * 45 + 1);
+          number[random - 1] += 1;
+          if (!arr.includes(random)) {
+            // 중복 확인
             arr.push(random);
+          }
         }
+        arr.splice(0);
+        i++;
+        h1.textContent = `${i}회 진행`;
       }
 
-      
-      const ctx = document.querySelectorAll("#myChart");
-      new Chart(ctx, {
-        type: "polarArea",
-        data: {
-          labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33', '34', '35', '36', '37', '38', '39', '40', '41', '42', '43', '44', '45'],
-          datasets: [
-            {
-              label: "로또",
-              data: number,
-              borderWidth: 1,
-            },
-          ],
-        },
+      let fst = -Infinity;
+      let sec = -Infinity;
+      let thr = -Infinity;
+      let fstIndex = 0;
+      let secIndex = 0;
+      let thrIndex = 0;
 
+      number.forEach((v, i) => {
+        if (v > fst) {
+          thr = sec;
+          thrIndex = secIndex;
+          sec = fst;
+          secIndex = fstIndex;
+          fst = v;
+          fstIndex = i;
+        } else if (v > sec) {
+          thr = sec;
+          thrIndex = secIndex;
+          sec = v;
+          secIndex = i;
+        } else if (v > thr) {
+          thr = v;
+          thrIndex = i;
+        }
       });
+      const midx = [fstIndex, secIndex, thrIndex];
+
+      let bcarr = new Array(45).fill(0);
+      for (let i = 0; i < 45; i++) {
+        if (midx[0] == i || midx[1] == i || midx[2] == i) {
+          bcarr[i] = `rgba(255, 0, 0, ${0.5})`;
+          continue;
+        }
+        bcarr[i] = `rgba(${i * 2}, ${i + 40}, ${255 - i * 3}, ${
+          0.2 + i * 0.01
+        })`;
+      }
+
+      function Charts(ctx, type, bcarr) {
+        const chart = new Chart(ctx, {
+          type: type,
+          data: {
+            labels: labelarr,
+            datasets: [
+              {
+                label: "로또",
+                data: number,
+                borderWidth: 1,
+                backgroundColor: bcarr,
+              },
+            ],
+          },
+        });
+        return chart;
+      }
+
+      const labelarr = Array.from({ length: 45 }, (_, i) => i + 1);
+
+      const charts = [
+        document.querySelector("#myChart1"),
+        document.querySelector("#myChart2"),
+        document.querySelector("#myChart3"),
+        document.querySelector("#myChart4"),
+      ];
+
+      new Charts(charts[0], "bar", bcarr);
+      new Charts(charts[1], "bubble", bcarr);
+      new Charts(charts[2], "doughnut", bcarr);
+      new Charts(charts[3], "polarArea", bcarr);
     </script>
   </body>
 </html>
