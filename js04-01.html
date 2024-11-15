@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>배열(전개연산자)</title>
+    <script>
+      /* 옅은복사 */
+      const arr = [11, 22, 33, 44, 55];
+      const arr2 = arr;
+      arr2[2] = 77;
+      console.log(arr, arr2);
+
+      /* 깊은복사 */
+      const srr = [66, 77, 88, 99, 0];
+      const arr3 = [...srr];
+      arr3[3] = 77;
+      console.log(srr, arr3);
+
+      /* 응용 예 */
+      Math.max(1, 2, 3, 4, 23, 54, 767, 5); // 767
+      Math.max([11, 22, 33, 24, 35, 64]); // NaN
+      Math.max(...[11, 22, 33, 24, 35, 64]); // 64
+    </script>
+  </head>
+  <body></body>
+</html>

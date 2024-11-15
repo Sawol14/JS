@@ -10,6 +10,9 @@
         width: 45%;
         display: flex;
       }
+      canvas {
+        margin: 30px;
+      }
     </style>
   </head>
   <body>
@@ -25,10 +28,11 @@
     </div>
     <script>
       const h1 = document.querySelector("h1");
-      const trw = "100000";
+      const trw =  prompt('몇 회 실행?') || 30;
       const arr = [];
       let i = 0;
       let number = new Array(45).fill(0); // fill() 모든요소를 ()안의 값으로 채움
+      
       while (i < trw) {
         while (arr.length < 6) {
           const random = Math.floor(Math.random() * 45 + 1);
@@ -42,14 +46,14 @@
         i++;
         h1.textContent = `${i}회 진행`;
       }
-
-      let fst = -Infinity;
+     
+      // 상위 3개 값 인덱스 구하기
+      let fst = -Infinity; // -Infinity:최소 Infinity:최대 
       let sec = -Infinity;
       let thr = -Infinity;
-      let fstIndex = 0;
-      let secIndex = 0;
-      let thrIndex = 0;
-
+      let fstIndex = -1; // 인덱스번호가 0부터 시작하기때문에 -1로 초기화
+      let secIndex = -1;
+      let thrIndex = -1;
       number.forEach((v, i) => {
         if (v > fst) {
           thr = sec;
@@ -73,7 +77,7 @@
       let bcarr = new Array(45).fill(0);
       for (let i = 0; i < 45; i++) {
         if (midx[0] == i || midx[1] == i || midx[2] == i) {
-          bcarr[i] = `rgba(255, 0, 0, ${0.5})`;
+          bcarr[i] = `rgba(255, 0, 0, ${0.6})`;
           continue;
         }
         bcarr[i] = `rgba(${i * 2}, ${i * 4}, ${i * 5}, ${0.2 + i * 0.01})`;
@@ -110,6 +114,7 @@
       new Charts(charts[1], "bubble", bcarr);
       new Charts(charts[2], "doughnut", bcarr);
       new Charts(charts[3], "polarArea", bcarr);
+    
     </script>
   </body>
 </html>

@@ -34,7 +34,7 @@
       }
       async function fetchTitle(url) {
         try {
-          const response = await fetch('js'+url+'.html');
+          const response = await fetch("js" + url + ".html");
           const text = await response.text();
           const parser = new DOMParser();
           const doc = parser.parseFromString(text, "text/html");
@@ -55,7 +55,7 @@
                           지정
 
         */
-        let st = [7, 10, 6];
+        let st = [7, 10, 6, 8, 6, 7, 8, 6, 9, 10];
         let list = "";
 
         list += `<h1>JS 특강</h1>
@@ -63,31 +63,35 @@
                     <div id="preview" onclick="closePreview(event)">
                     <iframe id="previewIframe" src=""></iframe>
                     </div>`;
-        list += '<div class="table-container">';
+          list += '<div>';
         for (i = 0; i < st.length; i++) {
+          if (i == 0 || i  % 3 == 0 || (i-1)==st.length ) {
+            list += '<div class="table-container">';
+          }
           list += "<table>";
           list += "<thead>";
           list += `<th colspan="2">${i + 1}일차</th>`;
           list += "</thead>";
           list += "<tbody>";
+          
+          for (j = 0; j < st[i]; j++) {
             list += "<tr>";
               list += "<td>";
-          for (j = 0; j < st[i]; j++) {
-            
-            
             url = j < 9 ? `0${i + 1}-0${j + 1}` : `0${i + 1}-${j + 1}`;
             const title = await fetchTitle(url);
             list += `<a href="js${url}.html" class="link-box" onclick="showLinkPreview(event, 'js${url}.html')">${url}___${title}</a><br />`;
-            
-            
+            list += "</td>";
+            list += "</tr>";
           }
-          list += "</td>";
-          list += "</tr>";
+          
           list += "</tbody>";
           list += "</table>";
+          if ((i + 1) % 3 == 0 || i-1 == st.length) {
+            list += "</div>";
+          }
         }
+        list += '</div>'
 
-        list += "</div>";
         document.body.innerHTML = list;
       }
       generateContent();
@@ -106,7 +110,6 @@
       tr {
         text-align: center;
         background-color: aliceblue;
-        
       }
       #tdnum {
         width: 80px;
@@ -143,7 +146,7 @@
       .link-box:hover {
         color: red;
       }
-
+      
       .table-container {
         display: flex;
         gap: 10px;
@@ -153,15 +156,16 @@
 
       table {
         width: 18%;
+        min-height: 300px;
         border-collapse: collapse;
         overflow: hidden;
         border: 1px solid indigo;
-      }
+        margin-top: 20px;
+        font-size: 1.2vw;
 
+      }
       td {
         text-align: left;
-        vertical-align: top;
-        
       }
 
       thead,
@@ -172,6 +176,7 @@
       a {
         text-decoration: none;
         color: black;
+
       }
     </style>
   </head>
