@@ -76,9 +76,7 @@
           bcarr[i] = `rgba(255, 0, 0, ${0.5})`;
           continue;
         }
-        bcarr[i] = `rgba(${i * 2}, ${i + 40}, ${255 - i * 3}, ${
-          0.2 + i * 0.01
-        })`;
+        bcarr[i] = `rgba(${i * 2}, ${i * 4}, ${i * 5}, ${0.2 + i * 0.01})`;
       }
 
       function Charts(ctx, type, bcarr) {
