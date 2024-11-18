@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>B</title>
+
+    <style>
+      body {
+        text-align: center;
+      }
+      h1 {
+        display: inline-block;
+        border-radius: 15px;
+        padding: 5px;
+        margin: 10px auto;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 id="op">새로운 도전!!</h1>
+    <br />
+    <button onclick="fSwichOn()">깜빡이</button>
+    <button onclick="cSwichOn()">색바꾸기</button>
+    <script>
+      const h1 = document.getElementById("op");
+      let fSwich = 0;
+      let cSwich = 0;
+      let opacity = 0;
+      function fSwichOn() {
+        if (fSwich == 0) {
+          fSwich = 1;
+          console.log("깜빡이 스위치 on");
+          fadeIn();
+          
+        } else {
+          fSwich = 0;
+          opacity = 1;
+          console.log("깜빡이 스위치 off");
+        }
+      }
+      function cSwichOn() {
+        if (cSwich == 0) {
+          cSwich = 1;
+          console.log("컬러 스위치 on");
+          ranCol();
+          
+        } else {
+          cSwich = 0;
+          console.log("컬러 스위치 off");
+        }
+      }
+      function fadeIn() {
+        let mc1 = Math.random() * 255;
+        let mc2 = Math.random() * 255;
+        let mc3 = Math.random() * 255;
+        opacity += 0.1;
+        h1.style.opacity = opacity;
+        if (fSwich == 1) {
+          setTimeout(fadeIn, 50);
+          if (opacity >= 0.9) {
+            opacity = 0;
+          }
+        }
+      }
+      function ranCol() {
+        let mc1 = Math.random() * 255;
+        let mc2 = Math.random() * 255;
+        let mc3 = Math.random() * 255;
+        h1.style.color = `rgb(${mc1}, ${mc2}, ${mc3})`;
+        h1.style.backgroundColor = `rgb(${mc2}, ${mc3}, ${mc1})`;
+        if (cSwich == 1) {
+          setTimeout(ranCol, 300);
+        }
+      }
+    </script>
+  </body>
+</html>

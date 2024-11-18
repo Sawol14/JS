@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>A</title>
+  </head>
+  <body>
+    <h1>안녕하세요!! 이글은 5초 후 지워집니다!!!</h1>
+    <script>
+      let i = 1;
+      async function add(){
+        console.log(i++)
+      }
+      const add1 = setInterval(add,10)
+      setTimeout(()=>{
+        console.log("시작")
+        setTimeout(() => {
+        const h1 = document.querySelector("h1");
+        clearInterval(add1);
+        h1.innerHTML = "<h3>인사가 사라졌습니다.!!</h3>";
+      }, 5000);
+
+      }, 100);
+      
+    </script>
+  </body>
+</html>

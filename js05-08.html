@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>로그인</title>
+
+    <style>
+      .modal {
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        position: fixed;
+      }
+      .login {
+        position: fixed;
+        margin-top: 10%;
+        margin-left: 40%;
+        display: none;
+        background-color: white;
+        text-align: center;
+        width: 20%;
+        padding: 10px;
+        box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5);
+        border-radius: 15px;
+        border: 1px solid black;
+      }
+      input,
+      button {
+        width: 100%;
+        margin: 10px auto;
+        color: white;
+        border-radius: 5px;
+        border: none;
+        box-shadow: 2px 2px 10px black;
+      }
+      button {
+        background-color: #007bff;
+        padding: 5px;
+        border: none;
+        cursor: pointer;
+      }
+      input {
+        width: 96%;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- div.login>h2{로그인}+form>input*2+button*2 -->
+    <div class="modal" onclick="closelogin(event)">
+      <div class="login">
+        <h2>로그인</h2>
+        <form action="">
+          <input type="text" placeholder="사용자 이름" />
+          <input type="password" placeholder="비밀번호" />
+          <button type="submit">로그인</button>
+          <button type="reset">다시입력</button>
+        </form>
+      </div>
+      <div>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos odit
+        tenetur laboriosam temporibus accusantium, mollitia optio inventore
+        iure. Porro nobis libero suscipit? Nobis alias repellendus laborum
+        excepturi quis quaerat quam sit assumenda, blanditiis deleniti enim
+        debitis adipisci quasi dolore autem placeat, molestias fugiat, minus
+        recusandae omnis fuga. Tenetur nobis dolorum ipsa assumenda dicta unde
+        itaque vel perferendis laboriosam voluptatum facere ipsam eos, fuga
+        cumque. Possimus, architecto blanditiis. Voluptate dolor officiis,
+        perferendis iusto blanditiis eius ex est molestiae? Assumenda, omnis,
+        dolorum quasi neque iure accusantium sit possimus officia id, explicabo
+        vel repellendus enim numquam? Eius nobis vitae consectetur labore
+        aperiam cupiditate?
+      </div>
+      <button onclick="loginWindow()">로그인</button>
+    </div>
+
+    <script>
+      // 로그인 창을 여는 함수
+      function loginWindow() {
+        console.log("클릭됨");
+        const login = document.querySelector(".login");
+        const modal = document.querySelector(".modal");
+        login.style.display = "block";
+        modal.style.backgroundColor = "rgba(0, 0, 0, 0.5)"; 
+        modal.style.cursor = "pointer"; 
+      }
+
+      
+      function closelogin(event) {
+        const modal = document.querySelector(".modal");
+        if (event.target === modal) {
+          const login = document.querySelector(".login");
+          login.style.display = "none"; 
+          modal.style.backgroundColor = "rgba(0, 0, 0, 0)"; 
+          modal.style.cursor = ""; 
+        }
+      }
+    </script>
+  </body>
+</html>
