@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>filter</title>
-    <script>
+    <script id="msc">
       const num = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
       const odd = (v) => v % 2;
       const even = (v) => !(v % 2);
@@ -19,15 +19,12 @@
   </head>
   <body>
     <h3>콘솔확인</h3>
-    const num = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];<br />
-    const odd = (v) => v % 2;<br />
-    const even = (v) => !(v % 2);<br />
-    const over4 = (v) => v > 4;<br />
-    const num2 = num.filter(odd);<br />
-    const num3 = num.filter(even);<br />
-    const num4 = num.filter(over4);<br />
-    console.log(num2);<br />
-    console.log(num3);<br />
-    console.log(num4);<br />
+    <pre id="scop"></pre>
+    <script>
+      const ls = document.querySelector('#msc');
+      const ps = ls.textContent;
+      const od = document.querySelector('#scop')
+      od.textContent = ps;
+    </script>
   </body>
 </html>

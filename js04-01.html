@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>배열(전개연산자)</title>
-    <script>
+    <script id="msc">
       /* 옅은복사 */
       const arr = [11, 22, 33, 44, 55];
       const arr2 = arr;
@@ -25,21 +25,12 @@
   </head>
   <body>
     <h3>콘솔확인</h3>
-    /* 옅은복사 */<br/>
-    const arr = [11, 22, 33, 44, 55];<br/>
-    const arr2 = arr;<br/>
-    arr2[2] = 77;<br/>
-    console.log(arr, arr2);<br/>
-    <br/>
-    /* 깊은복사 */<br/>
-    const srr = [66, 77, 88, 99, 0];<br/>
-    const arr3 = [...srr];<br/>
-    arr3[3] = 77;<br/>
-    console.log(srr, arr3);<br/>
-    <br/>
-    /* 응용 예 */<br/>
-    Math.max(1, 2, 3, 4, 23, 54, 767, 5); // 767<br/>
-    Math.max([11, 22, 33, 24, 35, 64]); // NaN<br/>
-    Math.max(...[11, 22, 33, 24, 35, 64]); // 64<br/>
+    <pre id="scop"></pre>
+    <script>
+      const ls = document.querySelector('#msc');
+      const ps = ls.textContent;
+      const od = document.querySelector('#scop')
+      od.textContent = ps;
+    </script>
   </body>
 </html>
