@@ -17,5 +17,17 @@
       console.timeEnd("map()으로 생성");
     </script>
   </head>
-  <body></body>
+  <body>
+    <h3>콘솔확인</h3>
+    const arr = Array(1000)<br />
+    .fill(0)<br />
+    .map((v, i) => i + 1);<br />
+
+    console.time("전개연산자");<br />
+    const arr_s = [...arr];<br />
+    console.timeEnd("전개연산자");<br />
+    console.time("map()으로 생성");<br />
+    const arr_m = arr.map((v) => v);<br />
+    console.timeEnd("map()으로 생성");<br />
+  </body>
 </html>
