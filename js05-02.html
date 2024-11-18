@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>함수</title>
+    <script id="msc">
+      /* 함수 선언식 */
+      function fn() {
+        console.log("안녕하세요.");
+        return "반가워요";
+      }
+      const inok = fn();
+      console.log(inok);
+
+      /* 함수 표현식 */
+      const fn2 = function () {
+        console.log("안녕하세요2");
+        return "반가워요2";
+      };
+      console.log(fn2());
+
+      /* 화살표 함수 */
+      const fn3 = () => {
+        console.log("안녕하세요3");
+        return "반가워요3";
+      };
+      console.log(fn3());
+
+      /* IIFE */
+      (function () {
+        console.log("This is an IIFE");
+      })();
+    </script>
+  </head>
+  <body>
+    <h3>콘솔확인</h3>
+    <pre id="scop"></pre>
+    <script>
+      const ls = document.querySelector('#msc');
+      const ps = ls.textContent;
+      const od = document.querySelector('#scop')
+      od.textContent = ps;
+    </script>
+  </body>
+</html>

@@ -14,15 +14,18 @@
         "destruction",
         "present",
       ];
-      const fWords = words.filter(sel);
-      const iWords = words.filter(sel).map((v) => v.length);
-      console.log(fWords);
-      console.log(iWords);
+     
 
       //     words = ['kiwi','orange','banana','exuberant','destruction','present'] 에서
       //     1) 글자의 크기값(length)을 가진 새로운 배열을 만드시오.
       //     2) 6글자가 넘어가는 단어만 고르고
       //     그 단어와 글자 갯수를 한줄씩 출력하시오.
+
+
+      const fWords = words.filter(sel);
+      const iWords = words.filter(sel).map((v) => v.length);
+      console.log(fWords);
+      console.log(iWords);
       document.addEventListener("DOMContentLoaded", () => {
         for (let i = 0; i < fWords.length; i++)
           document.body.innerHTML += `<h1>${fWords[i]}의 길이는 ${iWords[i]}입니다.</h1>`;

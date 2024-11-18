@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>로또 중복제거</title>
+    <script id="msc">
+      const count = Array(46).fill(0); // 해당 숫자 카운팅 용
+
+      function lotto() {
+        const arr = [];
+        while (arr.length < 6) {
+          const ran = Math.floor(Math.random() * 45 + 1);
+          if (!arr.includes(ran)) arr.push(ran);
+        }
+        console.log(arr.sort((a, b) => a - b));
+        arr.map((v) => count[v]++); // 값을 가진 위치에 1씩 추가하기
+      }
+      lotto();
+      // if (arr.length >= 6) break;
+      for (let i = 0; i < 100; i++) {
+        lotto();
+      }
+      console.log(count);
+    </script>
+  </head>
+  <body>
+    <h3>콘솔확인</h3>
+    <pre id="scop"></pre>
+    <script>
+      const ls = document.querySelector("#msc");
+      const ps = ls.textContent;
+      const od = document.querySelector("#scop");
+      od.textContent = ps;
+    </script>
+  </body>
+</html>
