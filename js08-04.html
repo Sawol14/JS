@@ -4,30 +4,112 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>FileList(내장객체)</title>
+    <style>
+      button {
+        background-color: rgb(71, 107, 133);
+        border: none;
+        border-radius: 10px;
+        padding: 10px;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+      }
+      button:disabled {
+        color: rgba(255, 255, 255, 0.555);
+        background-color: gray;
+        cursor: not-allowed;
+      }
+      input {
+        display: none;
+      }
+      div {
+        margin-top: 110px;
+        justify-self: center;
+        user-select: "none";
+      }
+      label {
+        font-size: 50px;
+        padding: 100px;
+        border-radius: 20px;
+        color: white;
+        background-color: rgba(71, 107, 133, 0.74);
+        cursor: pointer;
+      }
+    </style>
   </head>
   <body>
-    <input type="file" id="csvFile" accept=".csv, .txt" multiple />
-    <button id="uploadBtn">업로드</button>
+    <div>
+      <label for="csvFile">+</label>
+      <input type="file" id="csvFile" accept=".csv, .txt" multiple />
+    </div>
+
+    <div>
+      <button id="openBtn">내용보기</button>
+    </div>
     <hr />
     <pre id="output"></pre>
     <script>
+      const btn = document.querySelector("#openBtn");
+      const btnDis = () => (btn.disabled = true);
+      const btnAbl = () => (btn.disabled = false);
       const input = document.querySelector("#csvFile");
       input.addEventListener("change", () => {
         const inp = document.querySelector("#csvFile");
         console.log(inp.files.length);
         const output = document.querySelector("#output");
-        output.innerHTML = ''; 
-        for(let i = 0; i < inp.files.length; i++){
-          let fileSize;
-          if(inp.files[i].size/1024 < 1024){
-            fileSize = `${(inp.files[i].size/1024).toFixed(2)}KB`
-          }else fileSize = `${(inp.files[i].size/1024/1024).toFixed(2)}MB`
-          output.innerHTML += `
-          파일이름: ${inp.files[i].name} 
-          파일크기: ${fileSize}
-          파일유형: ${inp.files[i].type} 
+        output.innerHTML = "";
+        const fileSizeLimit = 2;
+        //FileList는 유사배열이기떄문에 일반 for문을 쓰거나 Array.from을 사용해 배열로 전환한다.
+        for (let i = 0; i < inp.files.length; i++) {
+          if (i == 0) {
+            output.innerHTML += `FileList를 그대로 사용하여 출력하였습니다.
+        
           `;
-        };
+          }
+          let fileSize;
+          if (inp.files[i].size / 1024 < 1024 * fileSizeLimit) {
+            fileSize = `${(inp.files[i].size / 1024).toFixed(2)}KB`;
+            btnAbl();
+          } else {
+            alert(`${inp.files[i].name}의 파일크기가 초과되었습니다.`);
+            output.innerHTML = `${fileSizeLimit}MB 미만의 파일을 올려주세요.`;
+            btnDis();
+            break;
+          }
+          // fileSize = `${(inp.files[i].size / 1024 / 1024).toFixed(2)}MB`;
+          output.innerHTML += `
+          [#${i + 1}] 
+          파일이름: ${inp.files[i].name}
+          파일크기: ${fileSize}
+          파일유형: ${inp.files[i].type}
+          `;
+        }
+        output.innerHTML += "<hr/>";
+
+        Array.from(inp.files).forEach((v, i) => {
+          if (i == 0) {
+            output.innerHTML += `Array.from으로 전환하여 출력하였습니다.
+        
+          `;
+          }
+          let fileSize;
+          if (v.size / 1024 < 1024) {
+            fileSize = `${(v.size / 1024).toFixed(2)}KB`;
+          } else fileSize = `${(v.size / 1024 / 1024).toFixed(2)}MB`;
+          output.innerHTML += `
+          [#${i + 1}]
+          파일이름: ${v.name}
+          파일크기: ${fileSize}
+          파일유형: ${v.type}
+          `;
+        });
+      });
+
+      btn.addEventListener("click", () => {
+        const inp = document.querySelector("#csvFile");
+        console.log(inp.files);
+        const output = document.querySelector("#output");
+        const name = (inp.files.output.innerHTML = 123);
       });
     </script>
   </body>
