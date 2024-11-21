@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>스타일 조작하기</title>
+  </head>
+  <body>
+    <script>
+      for (let i = 0; i < 25; i++) {
+        const div = document.createElement("div");
+        const val = i * 10;
+        div.style.height = "10px";
+        div.style.backgroundColor = `rgb(${30},${val},${150})`;
+        document.body.appendChild(div);
+      }
+    </script>
+  </body>
+</html>

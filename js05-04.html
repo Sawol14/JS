@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>타이머응용</title>
-    <script>
+    <script id="msc">
       /* 재귀함수 */
       let count = 0;
 
@@ -15,5 +15,14 @@
       inc();
     </script>
   </head>
-  <body></body>
+  <body>
+    <h3 id="h3">콘솔확인</h3>
+    <pre id="scop"></pre>
+    <script>
+      const ls = document.querySelector('#msc');
+      const ps = ls.textContent;
+      const od = document.querySelector('#scop')
+      od.textContent = ps;
+    </script>
+  </body>
 </html>

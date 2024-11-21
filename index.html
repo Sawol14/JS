@@ -55,7 +55,7 @@
                           지정
 
         */
-        let st = [7, 10, 6, 6, 10] ;
+        let st = [7, 10, 6, 6, 9, 9, 3, 10 ] ;
         let list = "";
 
         list += `<h1>JS 특강</h1>
@@ -65,7 +65,7 @@
                     </div>`;
           list += '<div>';
         for (i = 0; i < st.length; i++) {
-          if (i == 0 || i  % 3 == 0 || (i-1)==st.length ) {
+          if (i == 0 || i  % 4 == 0 || (i-1)==st.length ) {
             list += '<div class="table-container">';
           }
           list += "<table>";
@@ -86,7 +86,7 @@
           
           list += "</tbody>";
           list += "</table>";
-          if ((i + 1) % 3 == 0 || i-1 == st.length) {
+          if ((i + 1) % 4 == 0 || i-1 == st.length) {
             list += "</div>";
           }
         }

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>fetch(url)</title>
+    <script>
+      /* 개인적으로 내용 보강하기 */
+
+      // 데이터 가져올 URL 정의
+      const url = "https://snu.ac.kr";
+
+      // Fetch API를 사용해 URL에서 HTML 데이터를 가져옴
+      fetch(url)
+        .then((res) => res.text()) // 응답 데이터를 텍스트로 변환
+        .then((data) => {
+          // DOMParser를 사용하여 가져온 텍스트 데이터를 HTML DOM으로 변환
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(data, "text/html");
+
+          // "board-index-img1" 클래스를 가진 요소 선택
+          const myClass = doc.querySelector(".board-index-img1");
+          console.log(myClass); // 선택된 요소를 콘솔에 출력
+
+          // 선택된 요소 내부에서 "title" 클래스를 가진 모든 요소를 선택 (제목)
+          const infoTitle = myClass.querySelectorAll(".title");
+          // 선택된 요소 내부에서 "sub" 클래스를 가진 모든 요소를 선택 (내용)
+          const infoSub = myClass.querySelectorAll(".sub");
+
+          // 각 "title" 요소를 순회하며 내용을 화면에 출력
+          infoTitle.forEach((v, i) => {
+            document.write(`<h3>${i + 1} . ${v.innerHTML}</h3>`); // 순번과 함께 제목 출력
+            document.write(`<h5>${infoSub[i].innerHTML}</h5><hr/>`); // 내용 출력
+          });
+        });
+
+      // .board-index-img1 > .item ... : 주석 참고용
+    </script>
+  </head>
+  <body></body>
+</html>

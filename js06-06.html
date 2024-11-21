@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>이벤트 설정하기</title>
+  </head>
+  <body>
+    <script>
+      const h1 = document.createElement("h1");
+      h1.innerHTML = `<h1>클릭횟수 : 0</h1>`;
+      document.body.appendChild(h1);
+
+      let counter = 0;
+      h1.addEventListener("click", () => {
+        h1.innerHTML = `<h1>클릭횟수 : ${counter++}</h1>`;
+      });
+      h1.style.cursor = "pointer";
+      h1.style.userSelect = "none"; // 긁을 수 없음.
+      h1.addEventListener("contextmenu", (e) => {
+        e.preventDefault(); // 이벤트 막음
+      });
+    </script>
+  </body>
+</html>

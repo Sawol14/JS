@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>아이템리스트</title>
+    <style>
+      h1 {
+        margin: 5px 10px;
+      }
+      ul {
+        padding: 0;
+        list-style-type: none;
+      }
+      li {
+        background-color: rgb(227, 202, 171);
+        margin: 5px 10px;
+        padding: 10px 15px;
+        border-radius: 5px;
+        width: 250px;
+        transition: width 0.6s ease;
+      }
+      li:hover {
+        background-color: yellow;
+        width: 300px;
+      }
+      h1 ~ input {
+        margin-left: 15px;
+        box-shadow: 10px 10px 15px 5px rgba(0, 0, 0, 0.7);
+        border: none;
+      }
+    </style>
+    <script>
+      // const items = ["Apple", "Banana", "Cherry", "Kiwi", "Melon", "Orange"];
+    </script>
+  </head>
+  <body>
+    <h1>아이템 리스트 생성</h1>
+    <input type="text" onkeyup="inputv(this)" />
+    <button id="add">생성</button>
+    <hr />
+    <ul id="itemList"></ul>
+    <script>
+      let data;
+      function inputv(e) {
+        data = e.value;
+        console.log(e.value);
+      }
+      const itemList = document.getElementById("itemList");
+      const btn = document.getElementById("add");
+      btn.addEventListener("click", () => {
+        const li = document.createElement("li");
+        const inp = document.createElement("input");
+        /* appendchild의 메소드체닝 */
+        itemList.appendChild(li).append(inp, data);
+        inp.setAttribute("type", "checkbox");
+        /* 체크유무 */
+        inp.addEventListener("change", (event) => {
+          /* 삼항연산자 */
+          event.target.checked
+            ? console.log("체크되었어요")
+            : console.log("체크 안됨!");
+        });
+      });
+    </script>
+  </body>
+</html>

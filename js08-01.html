@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>셀랙트태그</title>
+    <script>
+      const myGet = (opt) => {
+        const select = document.createElement("select");
+        document.body.appendChild(select);
+
+        opt.forEach((v, i) => {
+          const option = document.createElement("option");
+          option.textContent = v;
+          select.appendChild(option);
+        });
+
+        select.addEventListener("change", (e) => {
+          console.log(e.target.value);
+          console.log(e.target.selectedIndex);
+          
+          p.innerHTML = `<h3>${e.target.value}</h3>`;
+        });
+        const p = document.createElement("p");
+        document.body.appendChild(p);
+        p.innerHTML = "읽고 싶은 내용을 선택해주세요.";
+      };
+      let body;
+      const url = "https://jsonplaceholder.typicode.com/posts";
+      fetch(url)
+        .then((response) => response.json())
+        .then((json) => json.map((v) => v.title))
+        .then(myGet);
+    </script>
+  </head>
+  <body></body>
+</html>

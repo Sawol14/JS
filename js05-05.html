@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>동기, 비동기 이해</title>
-    <script>
+    <script id="msc">
       setTimeout(() => console.log("1번"), 5000);
       console.log("2번");
       setTimeout(() => console.log("3번"), 3000);
@@ -13,5 +13,14 @@
       console.log("6번");
     </script>
   </head>
-  <body></body>
+  <body>
+    <h3 id="h3">콘솔확인</h3>
+    <pre id="scop"></pre>
+    <script>
+      const ls = document.querySelector('#msc');
+      const ps = ls.textContent;
+      const od = document.querySelector('#scop')
+      od.textContent = ps;
+    </script>
+  </body>
 </html>

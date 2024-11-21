@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>json 샘플</title>
+    <script>
+      const myGet = (opt) => {
+        const select = document.createElement("select");
+        document.body.appendChild(select);
+
+        const option = document.createElement("option");
+        option.textContent = opt[0];
+        select.appendChild(option);
+      };
+
+      const url = "https://jsonplaceholder.typicode.com/posts";
+      fetch(url)
+        .then((response) => response.json())
+        .then((json) => json.map((v) => v.title))
+        .then(myGet);
+    </script>
+  </head>
+  <body>
+    <!-- <select name="" id="">
+      <option value="">감자</option>
+      <option value="">고구마</option>
+      <option value="">당근</option>
+    </select> -->
+  </body>
+</html>

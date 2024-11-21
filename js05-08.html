@@ -8,6 +8,7 @@
     <style>
       .modal {
         justify-content: center;
+        text-align: center;
         align-items: center;
         width: 100%;
         height: 100%;
@@ -24,7 +25,8 @@
         padding: 10px;
         box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5);
         border-radius: 15px;
-        border: 1px solid black;
+        border: 1px solid rgb(105, 104, 104);
+        cursor: default;
       }
       input,
       button {
@@ -36,13 +38,14 @@
         box-shadow: 2px 2px 10px black;
       }
       button {
+        width: 80%;
         background-color: #007bff;
         padding: 5px;
         border: none;
         cursor: pointer;
       }
       input {
-        width: 96%;
+        width: 80%;
       }
     </style>
   </head>
@@ -72,28 +75,26 @@
         vel repellendus enim numquam? Eius nobis vitae consectetur labore
         aperiam cupiditate?
       </div>
-      <button onclick="loginWindow()">로그인</button>
+      <button onclick="loginWindow(event)">로그인</button>
     </div>
 
     <script>
-      // 로그인 창을 여는 함수
-      function loginWindow() {
-        console.log("클릭됨");
+      function loginWindow(event) {
+        console.log("로그인창 열기 클릭됨");
         const login = document.querySelector(".login");
         const modal = document.querySelector(".modal");
         login.style.display = "block";
-        modal.style.backgroundColor = "rgba(0, 0, 0, 0.5)"; 
-        modal.style.cursor = "pointer"; 
+        modal.style.backgroundColor = "rgba(0, 0, 0, 0.3)";
+        modal.style.cursor = "pointer";
       }
 
-      
       function closelogin(event) {
         const modal = document.querySelector(".modal");
         if (event.target === modal) {
           const login = document.querySelector(".login");
-          login.style.display = "none"; 
-          modal.style.backgroundColor = "rgba(0, 0, 0, 0)"; 
-          modal.style.cursor = ""; 
+          login.style.display = "none";
+          modal.style.backgroundColor = "rgba(0, 0, 0, 0)";
+          modal.style.cursor = "";
         }
       }
     </script>

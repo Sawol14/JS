@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>아이템리스트</title>
+    <style>
+      h1 {
+        margin: 5px 10px;
+      }
+      ul {
+        padding: 0;
+        list-style-type: none;
+      }
+      li {
+        background-color: rgb(227, 202, 171);
+        margin: 5px 10px;
+        padding: 10px 15px;
+        border-radius: 5px;
+        width: 250px;
+        transition: width 0.6s ease;
+      }
+      li:hover {
+        background-color: yellow;
+        width: 300px;
+      }
+    </style>
+    <script>
+      const items = ["Apple", "Banana", "Cherry", "Kiwi", "Melon", "Orange"];
+    </script>
+  </head>
+  <body>
+    <h1>아이템 리스트 생성</h1>
+    <ul id="itemList"></ul>
+    <script>
+      const itemList = document.getElementById("itemList");
+
+      items.forEach((item) => {
+        const li = document.createElement("li");
+        itemList.appendChild(li);
+        li.textContent = item;
+      });
+    </script>
+  </body>
+</html>

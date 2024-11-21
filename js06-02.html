@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>문서객체 생성하기</title>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        for (let i = 0; i < 10; i++) {
+          const header = document.createElement("h1"); //
+          document.body.appendChild(header);
+          header.style.color = "white";
+          header.style.backgroundColor = "blue";
+          header.textContent = "문서 객체 동적으로 생성중";
+          header.setAttribute("id", "title");
+          header.setAttribute("class", "사용자클래스");
+        }
+      });
+    </script>
+  </head>
+  <body></body>
+</html>

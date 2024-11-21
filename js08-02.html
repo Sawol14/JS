@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>셀랙트태그</title>
+    <script>
+      const myGet = (opt) => {
+        const select = document.createElement("select");
+        document.body.appendChild(select);
+
+        opt.forEach((v, i) => {
+          const option = document.createElement("option");
+          option.textContent = v[0];
+          select.appendChild(option);
+        });
+
+        select.addEventListener("change", (e) => {
+          console.log(e.target.value);
+          console.log(e.target.selectedIndex);
+
+          p.innerHTML = `<h3></h3>`;
+          pre1.innerHTML = `
+          <h4>
+          Version : ${opt[e.target.selectedIndex][2]}<br />
+          <br />
+          ${opt[e.target.selectedIndex][1]}
+          </h4>`;
+          const h4 = document.querySelector("h4");
+          h4.style.color = "blue";
+          const sd = document.querySelector("div");
+          sd.style.backgroundColor = "red";
+          sd.style.width = "30%";
+          sd.style.borderRadius= "10px";
+        });
+        const p = document.createElement("p");
+        document.body.appendChild(p);
+        p.innerHTML = "읽고 싶은 내용을 선택해주세요.";
+        const pre1 = document.createElement("div");
+        pre1.textContent = "";
+        document.body.appendChild(pre1);
+      };
+
+      const url =
+        "https://microsoftedge.github.io/Demos/json-dummy-data/256KB-min.json";
+      fetch(url)
+        .then((response) => response.json())
+        .then((json) => json.map((v) => [v.name, v.bio, v.version]))
+        .then(myGet);
+    </script>
+  </head>
+  <body></body>
+</html>
