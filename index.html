@@ -55,7 +55,7 @@
                           지정
 
         */
-        let st = [7, 10, 6, 6, 9, 9, 3, 10 ] ;
+        let st = [7, 10, 6, 6, 9, 9, 3, 10];
         let list = "";
 
         list += `<h1>JS 특강</h1>
@@ -63,9 +63,9 @@
                     <div id="preview" onclick="closePreview(event)">
                     <iframe id="previewIframe" src=""></iframe>
                     </div>`;
-          list += '<div>';
+        list += "<div>";
         for (i = 0; i < st.length; i++) {
-          if (i == 0 || i  % 4 == 0 || (i-1)==st.length ) {
+          if (i == 0 || i % 4 == 0 || i - 1 == st.length) {
             list += '<div class="table-container">';
           }
           list += "<table>";
@@ -73,24 +73,24 @@
           list += `<th colspan="2">${i + 1}일차</th>`;
           list += "</thead>";
           list += "<tbody>";
-          
+
           for (j = 0; j < st[i]; j++) {
             list += "<tr>";
-              list += "<td>";
+            list += "<td>";
             url = j < 9 ? `0${i + 1}-0${j + 1}` : `0${i + 1}-${j + 1}`;
             const title = await fetchTitle(url);
             list += `<a href="js${url}.html" class="link-box" onclick="showLinkPreview(event, 'js${url}.html')">${url}___${title}</a><br />`;
             list += "</td>";
             list += "</tr>";
           }
-          
+
           list += "</tbody>";
           list += "</table>";
-          if ((i + 1) % 4 == 0 || i-1 == st.length) {
+          if ((i + 1) % 4 == 0 || i - 1 == st.length) {
             list += "</div>";
           }
         }
-        list += '</div>'
+        list += "</div>";
 
         document.body.innerHTML = list;
       }
@@ -146,7 +146,7 @@
       .link-box:hover {
         color: red;
       }
-      
+
       .table-container {
         display: flex;
         gap: 10px;
@@ -162,7 +162,6 @@
         border: 1px solid indigo;
         margin-top: 20px;
         font-size: 1.2vw;
-
       }
       td {
         text-align: left;

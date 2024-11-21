@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FileList(내장객체)</title>
+  </head>
+  <body>
+    <input type="file" id="csvFile" accept=".csv, .txt" multiple />
+    <button id="uploadBtn">업로드</button>
+    <hr />
+    <pre id="output"></pre>
+    <script>
+      const input = document.querySelector("#csvFile");
+      input.addEventListener("change", () => {
+        const inp = document.querySelector("#csvFile");
+        console.log(inp.files.length);
+        const output = document.querySelector("#output");
+        output.innerHTML = ''; 
+        for(let i = 0; i < inp.files.length; i++){
+          let fileSize;
+          if(inp.files[i].size/1024 < 1024){
+            fileSize = `${(inp.files[i].size/1024).toFixed(2)}KB`
+          }else fileSize = `${(inp.files[i].size/1024/1024).toFixed(2)}MB`
+          output.innerHTML += `
+          파일이름: ${inp.files[i].name} 
+          파일크기: ${fileSize}
+          파일유형: ${inp.files[i].type} 
+          `;
+        };
+      });
+    </script>
+  </body>
+</html>

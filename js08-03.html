@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>파일업로드(내장객체)</title>
+  </head>
+  <body>
+    <input type="file" id="csvFile" accept=".csv, .txt" multiple />
+    <button id="uploadBtn">업로드</button>
+    <hr/>
+    <pre id="output"></pre>
+    <script>
+      const btn = document.querySelector("#uploadBtn");
+      btn.addEventListener("click", () => {
+        const inp = document.querySelector("#csvFile");
+        console.log(inp.files);
+        const output = document.querySelector("#output");
+        const name = inp.files.
+        output.innerHTML = 123;
+
+      });
+    </script>
+  </body>
+</html>
