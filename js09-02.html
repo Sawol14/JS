@@ -31,7 +31,6 @@
         }
       });
 
-
       document.getElementById("testBtn").addEventListener("click", () => {
         // GitHub Pages URL로 테스트 파일 로드
         fetch("https://sawol14.github.io/JS/js0902.xlsx")
@@ -57,10 +56,17 @@
         const SheetName1 = workbook.SheetNames[0];
         const workSheet1 = workbook.Sheets[SheetName1];
         const json1 = XLSX.utils.sheet_to_json(workSheet1);
-
+        console.log(
+          "chart1",
+          json1.sort((a, b) => parseFloat(a.Father) - parseFloat(b.Father))
+        );
         const SheetName2 = workbook.SheetNames[1];
         const workSheet2 = workbook.Sheets[SheetName2];
         const json2 = XLSX.utils.sheet_to_json(workSheet2);
+        console.log(
+          "chart2",
+          json2.sort((a, b) => parseFloat(a.Father) - parseFloat(b.Father))
+        );
 
         jsonOutput1(json1);
         jsonOutput2(json2);
@@ -84,7 +90,6 @@
           y: row.Son, // 아들 키 (Y축)
           r: 5, // 점의 반지름 (고정값)
         }));
-
         // 변환된 데이터를 이용해 차트를 생성
         charts(myChart1, bubbleData, "bubble");
       }
