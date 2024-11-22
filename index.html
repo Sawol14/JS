@@ -41,8 +41,7 @@
           const title = doc.querySelector("title").textContent;
           return title;
         } catch (error) {
-          console.error("제목을 가져오는 중 오류 발생:", error);
-          return "제목 로드 실패";
+          return "Error";
         }
       }
 
@@ -55,7 +54,7 @@
                           지정
 
         */
-        let st = [7, 10, 6, 6, 9, 9, 3, 4];
+        let st = [7, 10, 6, 6, 9, 8, 3, 4];
         let list = "";
 
         list += `<h1>JS 특강</h1>
@@ -75,15 +74,24 @@
           list += "<tbody>";
 
           for (j = 0; j < st[i]; j++) {
-            list += "<tr>";
-            list += "<td>";
             url = j < 9 ? `0${i + 1}-0${j + 1}` : `0${i + 1}-${j + 1}`;
             const title = await fetchTitle(url);
+
+            list += "<tr>";
+            list += "<td>";
             list += `<a href="js${url}.html" class="link-box" onclick="showLinkPreview(event, 'js${url}.html')">${url}___${title}</a><br />`;
             list += "</td>";
             list += "</tr>";
           }
-
+          if (st[i] < 10) {
+            for (let t = 0; t < (10-st[i]); t++) {
+              list += "<tr>";
+              list += "<td>";
+              list += "<br/>";
+              list += "</td>";
+              list += "</tr>";
+            }
+          }
           list += "</tbody>";
           list += "</table>";
           if ((i + 1) % 4 == 0 || i - 1 == st.length) {
@@ -99,21 +107,22 @@
 
     <style>
       h1 {
+        margin-top: 20px;
         text-align: center;
         color: brown;
+        font-size: 3vw;
       }
 
       h2 {
         text-align: center;
+        font-size: 2vw;
       }
 
       tr {
+        vertical-align: top;
         text-align: center;
-        background-color: aliceblue;
       }
-      #tdnum {
-        width: 80px;
-      }
+
       #preview {
         display: none;
         position: fixed;
@@ -152,19 +161,20 @@
         gap: 10px;
         justify-content: center;
         align-items: stretch;
+        min-height: 400px;
       }
 
       table {
         width: 18%;
-        min-height: 500px;
-        border-collapse: collapse;
         overflow: hidden;
         border: 1px solid indigo;
         margin-top: 20px;
         font-size: 1.2vw;
+        background-color: antiquewhite;
       }
       td {
         text-align: left;
+        vertical-align: top;
       }
 
       thead,
@@ -175,7 +185,7 @@
       a {
         text-decoration: none;
         color: black;
-        transition: all 0.8s ease;
+        transition: all 0.6s ease;
       }
     </style>
   </head>
