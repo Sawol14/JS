@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>텍스트파일 읽어오기</title>
+  </head>
+  <body>
+    <!-- input#csvFile+button#uploadBtn{분석}+pre#output -->
+    <input type="file" id="csvFile" />
+    <button id="uploadBtn">분석</button>
+    <pre id="output"></pre>
+
+    <script>
+      document.getElementById("uploadBtn").addEventListener("click", () => {
+        const inp = document.getElementById("csvFile");
+        const file = inp.files[0]; // console.dir(inp)
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = (e) => {
+            const text = event.target.result;
+            const output = document.querySelector(`#output`);
+            output.textContent = text;
+            console.log(text);
+          };
+          reader.readAsText(file);
+        }
+      });
+    </script>
+  </body>
+</html>
