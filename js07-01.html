@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>fetch(url)</title>
-    <script>
+    <script id="msc">
       /* 개인적으로 내용 보강하기 */
 
       // 데이터 가져올 URL 정의
@@ -37,5 +37,11 @@
       // .board-index-img1 > .item ... : 주석 참고용
     </script>
   </head>
-  <body></body>
+  <body>
+    <h3 id="h3">콘솔확인</h3>
+    <pre id="scop"></pre>
+    <script>
+      document.querySelector('#scop').textContent = document.querySelector('#msc').textContent
+    </script>
+  </body>
 </html>

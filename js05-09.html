@@ -3,18 +3,116 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>글자수</title>
+    <title>로그인2</title>
+    <style>
+      .modal {
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: white;
+        margin: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        display: none;
+      }
+      .modal.show {
+        display: flex;
+      }
+      .login {
+        /* display: block; */
+        background-color: white;
+        text-align: center;
+        width: 220px;
+        padding: 10px;
+        box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5);
+        border-radius: 15px;
+        border: 1px solid black;
+      }
+      input,
+      .login button {
+        width: 100%;
+        margin: 10px auto;
+        color: white;
+        border-radius: 5px;
+        border: none;
+        box-shadow: 2px 2px 10px black;
+      }
+      .login button {
+        background-color: #007bff;
+        padding: 5px;
+        border: none;
+      }
+      input {
+        width: 96%;
+        color: black;
+      }
+    </style>
   </head>
   <body>
-    <!-- h1#count{글자수 : 0} -->
-    <h1 id="count">글자수 : 0</h1>
-    <textarea cols="20" rows="10" onkeyup="updateText()"></textarea>
+    <!-- div.login>h2{로그인}+form>input*2+button*2 -->
+    <div class="modal">
+      <div class="login" onclick="">
+        <h2>로그인</h2>
+        <form action="https://naver.com">
+          <input type="text" />
+          <input type="text" />
+          <button type="submit">로그인</button>
+          <button type="reset" id="cancel">취소</button>
+        </form>
+      </div>
+    </div>
+    <div>
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi
+      laudantium suscipit harum necessitatibus voluptate facilis magnam rem
+      earum repellendus consequatur ex inventore perferendis dolores aperiam
+      amet, ratione molestiae dolorem aut corporis esse molestias doloribus fuga
+      quasi. Quisquam porro blanditiis voluptates neque minus numquam quia vel
+      soluta ex nulla quidem amet impedit, sed culpa voluptatibus molestias
+      facere dolore repudiandae nemo atque doloremque quibusdam sequi ipsa
+      autem. Ut nobis quasi eligendi eos officiis dolorem possimus unde minus
+      vel mollitia beatae culpa velit, nam omnis sed error vitae enim commodi
+      voluptas magni asperiores necessitatibus. Neque, temporibus maxime odit
+      laborum recusandae est dolorum ex cupiditate non sit nisi officiis
+      molestiae odio veritatis quidem, necessitatibus natus voluptatum ipsum
+      repellendus excepturi accusantium nostrum beatae tempore? Architecto nisi
+      quo perferendis delectus at, odio suscipit modi molestias, et deserunt aut
+      iure hic earum impedit veritatis dignissimos. Repellendus perspiciatis
+      dolore architecto in, enim eius, exercitationem non necessitatibus quo
+      atque a harum illum deleniti! Nesciunt maxime veritatis unde minus
+      cupiditate ratione corrupti! Similique quidem beatae illo mollitia
+      excepturi neque inventore modi praesentium aliquam. Corporis repellendus
+      excepturi sapiente quos tenetur illum doloribus hic suscipit, reiciendis
+      fugit dolore, neque, impedit incidunt atque ea nihil sequi. Similique illo
+      eligendi deleniti dignissimos sit debitis quidem harum at aliquam nulla
+      sed quam, magni dolorum animi eum dolores ab impedit eius, voluptate
+      doloribus hic. Error ut mollitia voluptate facilis aspernatur maxime
+      suscipit, ullam ipsam odit est, temporibus incidunt sint. Reprehenderit
+      sapiente dolor adipisci beatae, impedit repellendus doloribus ratione
+      numquam, quidem autem nisiiae? Assumenda, omnis, dolorum quasi neque iure
+      accusantium sit possimus officia id, explicabo vel repellendus enim
+      numquam? Eius nobis vitae consectetur labore aperiam cupiditate? <br />
+      <button id="login">로그인창</button>
+    </div>
     <script>
-      function updateText() {
-        const textArea = document.querySelector("textarea");
-        const count = document.querySelector("#count");
-        count.textContent = `글자수 : ${textArea.value.length}`;
-      }
+      const modal = document.querySelector(".modal");
+      document.querySelector("#login").addEventListener("click", () => {
+        // modal.classList.add("show");
+        modal.classList.toggle("show");
+      });
+      document.querySelector("#cancel").addEventListener("click", () => {
+        // modal.classList.remove("show");
+        modal.classList.toggle("show");
+      });
+      // const qs = (q) => document.querySelector(q);
+      // qs("#login").addEventListener("click", () =>
+      //   qs(".modal").classList.add("show")
+      // );
+      // qs("#cancel").addEventListener("click", () =>
+      //   qs(".modal").classList.remove("show")
+      // );
     </script>
   </body>
 </html>

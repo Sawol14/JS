@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>cssText 속성</title>
+  </head>
+  <body>
+    <h1 style="font-weight: bold; color: red; text-align: end">
+      cssText의 속성 알아보기
+    </h1>
+    <button>읽어오기 버튼</button>
+    <button>기능넣기 버튼</button>
+    <p></p>
+    <script>
+      const h1 = document.querySelector("h1");
+      const p = document.querySelector("p");
+      const btn = document.querySelectorAll("button");
+
+      btn[0].addEventListener("click", () => {
+        p.innerHTML = h1.style.cssText;
+      });
+      btn[1].addEventListener("click", () => {
+        h1.style.cssText = `
+         color: aquamarine;
+         font-size: 2rem;
+         text-decoration: underline;
+        `;
+      });
+    </script>
+  </body>
+</html>

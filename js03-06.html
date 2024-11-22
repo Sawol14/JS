@@ -36,6 +36,7 @@
       while (i < trw) {
         while (arr.length < 6) {
           const random = Math.floor(Math.random() * 45 + 1);
+          
           if (!arr.includes(random)) {
             // 중복 확인
             number[random - 1] += 1;
