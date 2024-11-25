@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>로컬스토리지</title>
+  </head>
+  <body>
+    <h1>로컬스토리지활용</h1>
+    이름:
+    <input type="text" class="nameInp" />
+    <br />
+    나이:
+    <input type="text" class="ageInp" />
+    <br />
+    주소:
+    <input type="text" class="addressInp" />
+    <hr />
+    <button id="saveBtn">저장하기</button>
+    <button id="loadBtn">불러오기</button>
+    <button id="deleteBtn">삭제하기</button>
+  </body>
+  <script>
+    let arr = new Array();
+    const name1 = document.querySelector(`.nameInp`);
+    const age1 = document.querySelector(`.ageInp`);
+    const address1 = document.querySelector(`.addressInp`);
+    const save = document.querySelector(`#saveBtn`);
+    const load = document.querySelector(`#loadBtn`);
+    save.addEventListener("click", () => {
+      const ori = {
+        name: name1.value,
+        age: age1.value,
+        address: address1.value,
+      };
+      arr.splice(0, 0, ori);
+      console.log(arr);
+      localStorage.setItem("my", JSON.stringify(arr));
+      alert("저장되었습니다.");
+    });
+
+    load.addEventListener("click", () => {
+      const list = localStorage.getItem("my", JSON.stringify(arr));
+      console.log(list);
+
+      const findKey = "1";
+      const found =  list.find(item => item.name === "1");
+      console.log(`검색결과 ${found}`);
+      alert("불러왔습니다.");
+    });
+  </script>
+</html>

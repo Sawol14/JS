@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>키보드제어</title>
+    <style>
+      /* h1 {
+        color: white;
+        background-color: blue;
+        border-radius: 50%;
+        font-size: 40px;
+        padding: 20px 20px 30px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(50%, 50%);
+      } */
+    </style>
+  </head>
+  <body>
+    <h1>★</h1>
+    <script>
+      const star = document.querySelector("h1");
+      //   star.style.color = "white";
+      //   star.style.backgroundColor = "blue";
+      //   star.style.borderRadius = "50%";
+      //   star.style.fontSize = "40px";
+      //   star.style.padding = "20px 20px 30px";
+      //   star.style.left = "50%";
+      //   star.style.top = "50%";
+      //   star.style.transform = "translate(50%,50%)";
+      //   star.style.position = "absolute";
+      star.style.cssText = `
+          color: white;
+          background-color: blue;
+          border-radius: 50%;
+          font-size: 40px;
+          padding: 20px 20px 30px;
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(50%, 50%);`;
+
+      let x = 0;
+      let y = 0;
+      const move = () => {
+        star.style.left = `${x * 20}px`;
+        star.style.top = `${y * 20}px`;
+      };
+      move();
+      addEventListener("keydown", (event) => {
+        if (event.key == "ArrowLeft") x -= 1;
+        if (event.key == "ArrowRight") x += 1;
+        if (event.key == "ArrowUp") y -= 1;
+        if (event.key == "ArrowDown") y += 1;
+        console.log(x, y);
+        console.log(event.keyCode); // 구형
+        console.log(event.key); // 최신
+        console.log(event.code); // 최신 물리적
+        move();
+      });
+    </script>
+  </body>
+</html>
