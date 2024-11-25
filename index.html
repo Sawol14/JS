@@ -54,7 +54,7 @@
                           지정
 
         */
-        let st = [7, 10, 6, 6, 10, 8, 3, 4, 9];
+        let st = [7, 10, 6, 6, 10, 8, 3, 4, 5, 1];
         let list = "";
 
         list += `<h1>JS 특강</h1>
@@ -74,12 +74,19 @@
           list += "<tbody>";
 
           for (j = 0; j < st[i]; j++) {
-            url = j < 9 ? `0${i + 1}-0${j + 1}` : `0${i + 1}-${j + 1}`;
+            url = j < 9 
+            ? i < 9 
+              ? `0${i + 1}-0${j + 1}` 
+              : `${i + 1}-0${j + 1}`
+
+            : i < 9 
+              ? `0${i + 1}-${j + 1}` 
+              : `${i + 1}-${j + 1}`
             const title = await fetchTitle(url);
 
             list += "<tr>";
             list += "<td>";
-            list += `<a href="js${url}.html" class="link-box" onclick="showLinkPreview(event, 'js${url}.html')">${url}___${title}</a><br />`;
+            list += `<a href="js${url}.html" class="link-box" onclick="showLinkPreview(event, 'js${url}.html')">${j+1}. ${title}</a><br />`;
             list += "</td>";
             list += "</tr>";
           }

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 할 일을 입력하고 추가할 수 있는 입력 필드와 버튼 -->
+    <input type="text" id="toDoInput" placeholder="할 일을 입력하세요." />
+    <button onclick="addToDo()">추가</button>
+
+    <!-- 선택된(체크된) 할 일을 삭제할 수 있는 버튼 -->
+    <button onclick="removeCheckedTodos()">삭제</button>
+
+    <!-- 할 일 목록이 표시될 <ul> 태그 -->
+    <ul id="toDoList"></ul>
+
+    <script>
+      // 할 일 목록을 담는 변수, HTML에서 <ul> 요소를 가져옴
+      const toDoList = document.getElementById("toDoList");
+
+      // 사용자가 입력한 텍스트를 담는 입력 필드
+      const toDoInput = document.getElementById("toDoInput");
+
+      // 저장된 할 일 목록을 Local Storage에서 불러오거나 빈 배열로 초기화
+      const savedTodos = JSON.parse(localStorage.getItem("toDoList")) || [];
+
+      // 할 일 목록을 화면에 렌더링하는 함수
+      function renderTodos() {
+        // 기존의 목록을 초기화
+        toDoList.innerHTML = "";
+        // 저장된 할 일 목록을 순회하며 HTML 요소 생성
+        savedTodos.forEach((todo, index) => {
+          const li = document.createElement("li"); // 각 할 일을 나타낼 <li> 요소
+          const checkbox = document.createElement("input"); // 완료 여부를 나타낼 체크박스
+          const label = document.createElement("label"); // 할 일 텍스트를 담을 <label> 요소
+
+          // 체크박스의 속성 설정
+          checkbox.type = "checkbox";
+          checkbox.checked = todo.completed;
+
+          // 체크박스 변경 시 완료 상태 업데이트, 텍스트 스타일 반영, 및 저장
+          checkbox.addEventListener("change", () => {
+            todo.completed = checkbox.checked;
+            label.style.textDecoration = todo.completed ? "line-through" : "none"; // 줄 긋기 업데이트
+            saveTodos(); // Local Storage에 변경된 데이터 저장
+          });
+
+          // 초기 상태에 따른 텍스트 스타일 지정
+          label.textContent = todo.text;
+          label.style.textDecoration = todo.completed ? "line-through" : "none";
+
+          // <li>에 체크박스와 텍스트 추가
+          li.appendChild(checkbox);
+          li.appendChild(label);
+
+          // <ul>에 <li> 추가
+          toDoList.appendChild(li);
+        });
+      }
+
+      // 할 일 목록을 Local Storage에 저장하는 함수
+      function saveTodos() {
+        localStorage.setItem("toDoList", JSON.stringify(savedTodos));
+      }
+
+      // 새로운 할 일을 목록에 추가하는 함수
+      function addToDo() {
+        const text = toDoInput.value.trim(); // 입력된 텍스트에서 공백 제거
+        if (text) {
+          savedTodos.push({ text: text, completed: false }); // 새로운 할 일을 배열에 추가
+          toDoInput.value = ""; // 입력 필드 초기화
+          renderTodos(); // 목록 업데이트
+          saveTodos(); // Local Storage에 저장
+        }
+      }
+
+      // 할 일 목록 초기 렌더링
+      renderTodos();
+
+      // 입력 필드에서 Enter 키를 눌렀을 때 할 일을 추가하는 이벤트 리스너
+      toDoInput.addEventListener("keydown", (event) => {
+        if (event.key === "Enter") {
+          addToDo();
+        }
+      });
+
+      // 체크된(완료된) 할 일을 삭제하는 함수
+      function removeCheckedTodos() {
+        // 완료된 항목만 필터링하여 새로운 배열로 갱신
+        for (let i = savedTodos.length - 1; i >= 0; i--) {
+          if (savedTodos[i].completed) {
+            savedTodos.splice(i, 1);
+          }
+        }
+        renderTodos(); // 목록 업데이트
+        saveTodos(); // Local Storage에 저장
+      }
+    </script>
+  </body>
+</html>

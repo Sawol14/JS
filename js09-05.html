@@ -19,34 +19,60 @@
     <button id="saveBtn">저장하기</button>
     <button id="loadBtn">불러오기</button>
     <button id="deleteBtn">삭제하기</button>
+    <div id="result"></div>
+
+
   </body>
   <script>
-    let arr = new Array();
+    const arr = [];
     const name1 = document.querySelector(`.nameInp`);
     const age1 = document.querySelector(`.ageInp`);
     const address1 = document.querySelector(`.addressInp`);
     const save = document.querySelector(`#saveBtn`);
     const load = document.querySelector(`#loadBtn`);
+    const deleteBtn = document.querySelector(`#deleteBtn`);
+    const result = document.querySelector(`#result`);
     save.addEventListener("click", () => {
       const ori = {
         name: name1.value,
         age: age1.value,
         address: address1.value,
       };
-      arr.splice(0, 0, ori);
-      console.log(arr);
+      arr.unshift(ori);
       localStorage.setItem("my", JSON.stringify(arr));
       alert("저장되었습니다.");
+      clearInputs();
     });
 
     load.addEventListener("click", () => {
-      const list = localStorage.getItem("my", JSON.stringify(arr));
+      const list = JSON.parse(localStorage.getItem("my")) || [];
       console.log(list);
-
-      const findKey = "1";
-      const found =  list.find(item => item.name === "1");
-      console.log(`검색결과 ${found}`);
+      displayData(list);
       alert("불러왔습니다.");
     });
+
+    deleteBtn.addEventListener("click", () => {
+      localStorage.removeItem("my");
+      arr.length = 0;
+      result.innerHTML = "";
+      alert("삭제되었습니다.");
+    });
+
+    function clearInputs() {
+      name1.value = "";
+      age1.value = "";
+      address1.value = "";
+    }
+
+    function displayData(data) {
+      result.innerHTML = data.map((item, index) => `
+        <div>
+          <h3>항목 ${index + 1}</h3>
+          <p>이름: ${item.name}</p>
+          <p>나이: ${item.age}</p>
+          <p>주소: ${item.address}</p>
+        </div>
+      `).join("");
+    }
   </script>
 </html>
